@@ -456,6 +456,17 @@ int main()
 		//cout<<"wait.size() = "<<wait.size()<<endl;
 	if (b1.size()==0 && b2.size()==0)
 	{
+	for (int i=0;i<wait.size()-1;i++)
+		{
+			for (int j=i+1;j<wait.size();j++)
+			{
+				if (wait[i].id==wait[j].id)
+				{
+					wait.erase(wait.begin()+j);
+					j=j-1;
+				}
+			}
+		}
 	bool c=true;
 	while (c)	
 		{
