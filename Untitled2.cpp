@@ -124,7 +124,7 @@ int calwaittime(vector<p> v)
 	return s;
 };
 int status1,status2;
-int run(p &cpu,int &status)
+int run(p &cpu,int &status)	//status = 1 -> directly to waiting queue, 2 -> process terminates in cpu, 3 -> normal case i.e. sending to waiting queue
 {
 	if (cpu.tarr[0].mode==2)
 	{
@@ -148,7 +148,7 @@ int run(p &cpu,int &status)
 		return time1;
 	}
 };
-vector<p> status_read(vector<p> &wait,p &cpu,int &status,int no)
+vector<p> status_read(vector<p> &wait,p &cpu,int &status,int no)	//printing of status and shifting to waiting queue
 {
 	//run(cpu,status);
 	if (status==1)
@@ -455,8 +455,8 @@ int main()
 		//cout<<"b2.size() = "<<b2.size()<<endl;
 		//cout<<"wait.size() = "<<wait.size()<<endl;
 	if (b1.size()==0 && b2.size()==0)
-	{
-	for (int i=0;i<wait.size()-1;i++)
+	{		
+		for (int i=0;i<wait.size()-1;i++)
 		{
 			for (int j=i+1;j<wait.size();j++)
 			{
@@ -467,6 +467,11 @@ int main()
 				}
 			}
 		}
+		/*
+		for (long long int i=0;i<wait.size();i++)
+		{
+		cout<<wait[i].id<<" ";}
+		*/
 	bool c=true;
 	while (c)	
 		{
@@ -508,26 +513,3 @@ int main()
 	}
 	return 0;
 }
-/*void sequential(p &cpu2,p &cpu1,vector<p> &b1,vector<p> &b2,vector<p> &wait,int &runt,int &waitt,int totalrun)
-{	
-	cout<<"Sequenial code starts"<<endl;
-	int f=1;
-	p cpu=cpu1;
-	//print(cpu1);		
-	while (runt>0)
-	{	
-		cout<<"Total computation running time = "<<totalrun<<endl;
-		if (b1.size()>0)
-		{
-		sort(b1.begin(),b1.end(),sortsjf);
-	}
-		sort(b2.begin(),b2.end(),sortljf);					
-		if (b1.size()>0)
-		{
-		cpu=b1[0];
-		cout<<"cpu = ";
-		print(cpu);		
-		b1.erase(b1.begin());
-		}
-	}
-};*/
